@@ -15,7 +15,7 @@ const callLog = (props) => {
     <tr className="calllog__row">
       <td>{props.room_id}</td>
       {/* <td>{startDate.toString()}</td> */}
-      <td>{date.toLocaleDateString()}</td>
+      <td className="text-muted">22 Feb 2020</td>
       <td>{date.toLocaleTimeString()}</td>
       <td>
         {convertToHMS(
