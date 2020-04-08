@@ -29,14 +29,12 @@ const callLog = (props) => {
       <td>{props.updated_at}</td> */}
       <td>
         {props.files_count ? (
-          <p className="showFiles">BlinkIn</p>
-        ) : (
           <i
             onClick={props.showImage}
-            className="fa fa-file-image-o"
+            className="fa fa-file-image-o showFiles"
             aria-hidden="true"
           ></i>
-        )}
+        ) : null}
       </td>
     </tr>
   );

@@ -13,11 +13,21 @@ const callLogs = (props) => {
     <Table style={{ width: 1000, margin: "auto" }}>
       <thead className="calllogs__thead">
         <tr>
-          <th>Room ID </th>
-          <th>Start Date</th>
-          <th>Start Time</th>
-          <th>Duration</th>
-          <th>To</th>
+          <th>
+            <i class="fa fa-id-card-o" aria-hidden="true"></i> Room ID
+          </th>
+          <th>
+            <i class="fa fa-calendar" aria-hidden="true"></i> Start Date
+          </th>
+          <th>
+            <i class="fa fa-hourglass-end" aria-hidden="true"></i> Start Time
+          </th>
+          <th>
+            <i class="fa fa-clock-o" aria-hidden="true"></i> Duration
+          </th>
+          <th>
+            <i class="fa fa-phone" aria-hidden="true"></i> To
+          </th>
           {/* <th>Create At</th>
           <th>Updated At</th> */}
           <th>Files</th>

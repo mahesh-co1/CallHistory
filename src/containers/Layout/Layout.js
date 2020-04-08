@@ -7,6 +7,7 @@ class Layout extends React.Component {
   state = {
     callData: null,
     showImage: false,
+    screenshots: [],
   };
 
   componentDidMount() {
@@ -59,22 +60,48 @@ class Layout extends React.Component {
   };
 
   toggleShowImage = () => {
+    let images = [];
+    if (!this.state.showImage) {
+      this.getScreenshots("54-1584007036151").then((res) => {
+        res.data.map((img) => {
+          images.push(
+            "https://blinkin-production.s3.eu-central-1.amazonaws.com/public/images/chat_images/" +
+              img.file_name +
+              img.file_extension
+          );
+        });
+      });
+    }
     this.setState((prevState) => {
       return {
         showImage: !prevState.showImage,
+        screenshots: images,
       };
     });
+  };
+
+  getScreenshots = (roomId) => {
+    return fetch(
+      "https://staging-framework.blinkin.io/v1/calls/get-files/" + roomId,
+      {
+        headers: new Headers({
+          "x-token": localStorage.getItem("token"),
+        }),
+      }
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        return res.data;
+      });
   };
 
   render() {
     let callLogs = null;
     let prevButton = null;
     let nextButton = null;
-    let multipleImages = [
-      "https://res-3.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/vgkxbu74t9l8xsc8p7ky",
-      "https://image.shutterstock.com/image-photo/mountains-during-sunset-beautiful-natural-260nw-407021107.jpg",
-      "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg",
-    ].map((img) => {
+    let multipleImages = this.state.screenshots.map((img) => {
       return (
         <ModalBody>
           {" "}
